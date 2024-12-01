@@ -1,6 +1,6 @@
 FROM debian:bullseye
 
-RUN apt update && apt upgrade -y && apt install -y nginx vim openssl
+RUN apt update && apt upgrade -y && apt install -y nginx openssl
 
 RUN mkdir -p /etc/nginx/ssl /var/run/nginx
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
@@ -11,7 +11,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 RUN chmod 600 /etc/nginx/ssl/inception.key && \
     chmod 644 /etc/nginx/ssl/inception.crt
 
-COPY ./default /etc/nginx/nginx.conf
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 443
 

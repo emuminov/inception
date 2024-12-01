@@ -2,6 +2,8 @@ services:
   mariadb:
     build: mariadb
     container_name: mariadb2
+    ports:
+      - "4242:3306"
     env_file: ".env"
     restart: always
     volumes:
@@ -17,7 +19,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - ./website:/var/www/html
+      - wp-website:/var/www/html
     restart: always 
     networks:
       - inception
@@ -30,12 +32,26 @@ services:
     env_file: ".env"
     restart: always
     volumes:
-      - ./website:/var/www/html
+      - wp-website:/var/www/html
     networks:
       - inception
 
 volumes:
   mariadb-data:
+    driver: local
+    name: mariadb-data
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: ~/data/mariadb
+
+  wp-website:
+    driver: local
+    name: wp-website
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: ~/data/website
 
 networks:
   inception:
