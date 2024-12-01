@@ -1,4 +1,4 @@
-FROM debian:12
+FROM debian:bullseye 
 
 # mariadb-server is the database engine
 # mariadb-client is the text interface fro interacting with it
