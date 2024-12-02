@@ -1,7 +1,7 @@
 services:
   mariadb:
-    build: mariadb
-    container_name: mariadb2
+    build: ./requirements/mariadb
+    container_name: mariadb
     ports:
       - "4242:3306"
     env_file: ".env"
@@ -12,8 +12,8 @@ services:
       - inception
 
   nginx:
-    build: nginx
-    container_name: nginx2
+    build: ./requirements/nginx
+    container_name: nginx
     depends_on:
       - wordpress_php
     ports:
@@ -25,7 +25,7 @@ services:
       - inception
 
   wordpress_php:
-    build: wordpress_php
+    build: ./requirements/wordpress_php
     container_name: wordpress_php
     depends_on:
       - mariadb
@@ -51,7 +51,7 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: ~/data/website
+      device: ~/data/wp-website
 
 networks:
   inception:
