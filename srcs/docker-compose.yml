@@ -36,6 +36,19 @@ services:
     networks:
       - inception
 
+  adminer:
+    build: ./requirements/bonus/adminer
+    container_name: adminer
+    depends_on:
+      - mariadb
+    ports:
+      - "9000"
+    restart: always
+    volumes:
+      - wp-website:/var/www/html
+    networks:
+      - inception
+
 volumes:
   mariadb-data:
     driver: local
