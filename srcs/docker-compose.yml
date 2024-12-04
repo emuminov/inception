@@ -58,6 +58,21 @@ services:
     networks:
       - inception
 
+  cadvisor:
+    build: ./requirements/bonus/service
+    container_name: cadvisor
+    ports:
+      - "8080:8080"
+    networks:
+      - inception
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro 
+      - /sys:/sys:ro 
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro \
+    restart: always
+
 volumes:
   mariadb-data:
     driver: local
