@@ -11,4 +11,8 @@ RUN service vsftpd start
 
 ENTRYPOINT ["ftp_start.sh"]
 
+# to test: ftp -p localhost 21
+# enter $FTP_USER and $FTP_PASSWORD
+# cd files
+# get <any file that is on the wordpress volume>
 CMD ["/usr/sbin/vsftpd", "/etc/vsftpd.conf"]
