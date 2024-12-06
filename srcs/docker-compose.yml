@@ -41,6 +41,7 @@ services:
     container_name: adminer
     depends_on:
       - mariadb
+      - wordpress_php
     ports:
       - "9000"
     restart: always
@@ -52,8 +53,19 @@ services:
   website:
     build: ./requirements/bonus/static_website
     container_name: website
+    depends_on:
+      - wordpress_php
     ports:
       - "9000"
+    restart: always
+    networks:
+      - inception
+
+  redis:
+    build: ./requirements/bonus/redis
+    container_name: redis
+    ports:
+      - "6379"
     restart: always
     networks:
       - inception
