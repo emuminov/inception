@@ -64,9 +64,27 @@ services:
   redis:
     build: ./requirements/bonus/redis
     container_name: redis
+    depends_on:
+      - mariadb
+      - wordpress_php
     ports:
       - "6379"
     restart: always
+    networks:
+      - inception
+
+  ftp:
+    build: ./requirements/bonus/ftp
+    container_name: ftp
+    depends_on:
+      - wordpress_php
+    env_file: ".env"
+    ports:
+      - "21:21"
+      - "20000-20010:20000-20010"
+    restart: always
+    volumes:
+      - wp-website:/home/$FTP_USER/ftp/files
     networks:
       - inception
 
