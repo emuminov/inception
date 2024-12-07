@@ -4,7 +4,7 @@ FROM debian:bullseye
 # php-mysqli for interacting with SQL database from php
 # php-redis for interacting with redis (bonus)
 # wget for fetching wordpress
-RUN apt update && apt upgrade -y && apt install -y wget php-fpm php php-mysql php-redis
+RUN apt update -y && apt upgrade -y && apt install -y wget php-fpm php php-mysql php-redis
 
 # fetch wp-cli for handling wp
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \

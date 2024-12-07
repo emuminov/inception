@@ -2,7 +2,7 @@ FROM debian:bullseye
 
 # mariadb-server is the database engine
 # mariadb-client is the text interface fro interacting with it
-RUN apt update && apt upgrade -y && apt install -y mariadb-server mariadb-client
+RUN apt update -y && apt upgrade -y && apt install -y mariadb-server mariadb-client
 
 # MariaDB conf and init file for when the database starts
 # the fact that it's init was specified in the 50-server.cnf

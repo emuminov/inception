@@ -1,7 +1,7 @@
 FROM debian:bullseye 
 
 # nodejs for serving the website
-RUN apt update && apt upgrade -y && apt install -y nodejs npm
+RUN apt update -y && apt upgrade -y && apt install -y nodejs npm
 
 COPY ./website /app
 
